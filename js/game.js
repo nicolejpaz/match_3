@@ -1,5 +1,6 @@
 $(document).ready(function() {
   GAME_PIECE_SIZE = 50
+  COLORS = ["#0c5da5", "#8106a9", "#e9fb00", "#ff9500"]
   new Main()
 })
 
@@ -41,6 +42,5 @@ function Piece(gameCanvas) {
 }
 
 function pickColor() {
-  var colors = ["#0c5da5", "#8106a9", "#e9fb00", "#ff9500"]
-  return colors[Math.floor(Math.random() * 4)]
+  return COLORS[Math.floor(Math.random() * 4)]
 }
