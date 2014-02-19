@@ -1,7 +1,7 @@
 $(document).ready(function() {
   GAME_PIECE_SIZE = 50
-  makeColorConstant()
 
+  makeColorConstant()
   new Game()
 })
 
@@ -21,9 +21,24 @@ function Game() {
 // *** CREATE BOARD *** //
 
 function Board(gameCanvas) {
+  var boardPosition = createBoard(gameCanvas)
+
   var gameBoard = gameCanvas.getContext("2d")
-  new Piece(gameCanvas)
   makeBoardLines(gameBoard)
+}
+
+function createBoard(gameCanvas) {
+  var boardPosition = []
+  
+  for(var pieceNumber = 0; pieceNumber <= 100; pieceNumber++) {
+    for(var y = 0; y <= 500; y += GAME_PIECE_SIZE) {
+      for(var x = 0; x <= 500; x += GAME_PIECE_SIZE) {
+        boardPosition[pieceNumber] = Piece
+        buildPiece(boardPosition[pieceNumber], gameCanvas, x, y)
+      }
+    }
+  }
+  return boardPosition
 }
 
 function makeBoardLines(gameBoard) {
@@ -38,17 +53,29 @@ function makeBoardLines(gameBoard) {
   }
 }
 
-function Piece(gameCanvas) {
-  var gamePiece = gameCanvas.getContext("2d")
-
-  for(var y = 0; y <= 500; y += GAME_PIECE_SIZE) {
-    for(var x = 0; x <= 500; x += GAME_PIECE_SIZE) {
-      var color = pickColor()
-      gamePiece.fillStyle = color
-      gamePiece.fillRect(x, y, GAME_PIECE_SIZE, GAME_PIECE_SIZE)
-    }
+function buildPiece(piece, gameCanvas, x, y) {
+  piece.build(gameCanvas, x, y)
+  if (Piece.color() === COLORS[0]) {
+    piece.type = "blue"
+  } else if (Piece.color() === COLORS[1]) {
+    piece.type = "purple"
+  } else if (Piece.color() === COLORS[2]) {
+    piece.type = "yellow"
+  } else if (Piece.color() === COLORS[3]) {
+    piece.type = "orange"
   }
+}
 
+var Piece = {
+  color: function() {
+    return pickColor()
+  },
+  build: function(gameCanvas, x, y) {
+    var gamePiece = gameCanvas.getContext("2d")
+
+    gamePiece.fillStyle = this.color()
+    gamePiece.fillRect(x, y, GAME_PIECE_SIZE, GAME_PIECE_SIZE)
+  }
 }
 
 function pickColor() {
