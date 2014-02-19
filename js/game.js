@@ -5,11 +5,11 @@ $(document).ready(function() {
 function Main() {
   var gameCanvas = document.querySelector("#game-canvas") 
   new Board(gameCanvas)
-  new Piece(gameCanvas)
 }
 
 function Board(gameCanvas) {
   var gameBoard = gameCanvas.getContext("2d")
+  new Piece(gameCanvas)
   makeBoardLines(gameBoard)
 }
 
@@ -18,7 +18,7 @@ function makeBoardLines(gameBoard) {
     gameBoard.moveTo(i, 0)
     gameBoard.lineTo(i, 500)
     gameBoard.stroke()
-
+    
     gameBoard.moveTo(0, i)
     gameBoard.lineTo(500, i)
     gameBoard.stroke()
@@ -27,6 +27,17 @@ function makeBoardLines(gameBoard) {
 
 function Piece(gameCanvas) {
   var gamePiece = gameCanvas.getContext("2d")
-  gamePiece.fillStyle = "#ccc"
-  gamePiece.fillRect(0, 0, 25, 25)
+
+  for(var y = 0; y <= 500; y += 25) {
+    for(var x = 0; x <= 500; x += 25) {
+      gamePiece.fillStyle = pickColor()
+      gamePiece.fillRect(x, y, 25, 25)
+    }
+  }
+
+}
+
+function pickColor() {
+  var colors = ["#0c5da5", "#8106a9", "#e9fb00", "#ff9500"]
+  return colors[Math.floor(Math.random() * 4)]
 }
