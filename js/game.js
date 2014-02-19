@@ -2,7 +2,7 @@ $(document).ready(function() {
   GAME_PIECE_SIZE = 50
   makeColorConstant()
 
-  new Main()
+  new Game()
 })
 
 function makeColorConstant() {
@@ -13,7 +13,7 @@ function makeColorConstant() {
   COLORS = [blue, purple, yellow, orange]
 }
 
-function Main() {
+function Game() {
   var gameCanvas = document.querySelector("#game-canvas") 
   new Board(gameCanvas)
 }
