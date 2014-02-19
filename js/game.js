@@ -3,5 +3,6 @@ $(document).ready(function() {
 })
 
 function Main() {
+  var gameCanvas = document.querySelector("#game-canvas") 
   
 }
