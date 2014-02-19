@@ -8,6 +8,8 @@ function Main() {
   new Board(gameCanvas)
 }
 
+// *** CREATE BOARD *** //
+
 function Board(gameCanvas) {
   var gameBoard = gameCanvas.getContext("2d")
   new Piece(gameCanvas)
