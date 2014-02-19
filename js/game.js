@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  GAME_PIECE_SIZE = 50
   new Main()
 })
 
@@ -14,7 +15,7 @@ function Board(gameCanvas) {
 }
 
 function makeBoardLines(gameBoard) {
-  for(var i = 0; i <= 500; i += 25) {
+  for(var i = 0; i <= 500; i += GAME_PIECE_SIZE) {
     gameBoard.moveTo(i, 0)
     gameBoard.lineTo(i, 500)
     gameBoard.stroke()
@@ -28,10 +29,10 @@ function makeBoardLines(gameBoard) {
 function Piece(gameCanvas) {
   var gamePiece = gameCanvas.getContext("2d")
 
-  for(var y = 0; y <= 500; y += 25) {
-    for(var x = 0; x <= 500; x += 25) {
+  for(var y = 0; y <= 500; y += GAME_PIECE_SIZE) {
+    for(var x = 0; x <= 500; x += GAME_PIECE_SIZE) {
       gamePiece.fillStyle = pickColor()
-      gamePiece.fillRect(x, y, 25, 25)
+      gamePiece.fillRect(x, y, GAME_PIECE_SIZE, GAME_PIECE_SIZE)
     }
   }
 
